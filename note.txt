@@ -1,0 +1,13 @@
+19/10
+a. udah bisa save input tapi hasil data unarrange, awalnya bisa arrange (mungkin di bagian pas iterate datanya ke arrange jadi alphabet)
+code script.js line 140 "loaddatafromstoreage" DONE
+
+b. gak masuk ke local storage, setelah refresh hilang => why? DONE
+
+data keluar di list undefined, check input point nya mungkin di bagian makeBooks DONE
+
+c. retrieve data from click button agar merubah status done read or not bagian input
+
+d. keluarin button color, dan value untuk memindah mindah hasil data buku Rotingnya
+
+e. start buat search book items
