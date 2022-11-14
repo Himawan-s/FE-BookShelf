@@ -10,11 +10,13 @@ document.addEventListener('DOMContentLoaded', function (){
     });
 });
 
+
+
 function addBooks(){
     const bookTitle = document.getElementById('inputBookTitle').value;
     const author = document.getElementById('inputBookAuthor').value;
     const bookYear = document.getElementById('inputBookYear').value;
-    const isComplete = document.getElementById('inputBookIsComplete').value;
+    const isComplete = document.getElementById('inputBookIsComplete').checked;
     
     const generateID = generateId();
     const booksObject = generateBooksObject(generateID, bookTitle, author, bookYear, isComplete);
@@ -91,9 +93,9 @@ function makeBooks(booksObject){
         const blmSelsaiBaca = document.createElement('button');
         blmSelsaiBaca.classList.add('green');
         blmSelsaiBaca.addEventListener('click', function(){
-            blmSelsaiBaca(booksObject.id);
+            undoBuku(booksObject.id);
         });
-        selesaiButton.innerText='Belum Selesai Dibaca';
+        blmSelsaiBaca.innerText='Belum Selesai Dibaca';
 
         const hapusBuku = document.createElement('button');
         hapusBuku.classList.add('red');
@@ -129,6 +131,17 @@ function deleteBuku(bookId){
     saveData();
 }
 
+function undoBuku(bookId){
+    const bookTarget = findBook(bookId);
+
+    if (bookTarget == null) return;
+
+    bookTarget.isCompleted = false;
+    document.dispatchEvent(new Event(RENDER_EVENT));
+    saveData();
+}
+
+
 function findBook(bookId){
     for (const bookItem of bookshelf){
         if (bookItem.id === bookId){
@@ -157,7 +170,7 @@ document.addEventListener(RENDER_EVENT, function() {
 
     for (const books of bookshelf){
         const bookElement = makeBooks(books);
-        if (!books.isComplete) {
+        if (!books.isCompleted) { 
             incompletedBook.append(bookElement);
         } else {
             completeBook.append(bookElement);
@@ -193,8 +206,8 @@ function loadDataFromStorage(){
     let data = JSON.parse(serializeData);
 
     if (data !== null){
-        for (const book of data){
-            bookshelf.push(book);
+        for (const books of data){
+            bookshelf.push(books);
         }
     }
 

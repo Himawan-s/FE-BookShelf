@@ -8,6 +8,8 @@ data keluar di list undefined, check input point nya mungkin di bagian makeBooks
 
 c. retrieve data from click button agar merubah status done read or not bagian input
 
-d. keluarin button color, dan value untuk memindah mindah hasil data buku Rotingnya
+d. keluarin button color Done, dan value untuk memindah mindah hasil data buku Rotingnya DONE
 
 e. start buat search book items
+
+f. addevent listener kalau if (!book) dia pindah bawah DONE
